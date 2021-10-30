@@ -23,7 +23,7 @@ def menu():
 def base():
     conn = sqlite3.connect('dict.db')
     cur = conn.cursor()
-    cur.execute('''CREATE TABLE dict
+    cur.execute('''CREATE TABLE if not exists dict
                 (id         INTEGER PRIMARY KEY,
                 PALABRA    TEXT NOT NULL,
                 DEFINICION  TEXT NOT NULL)''')
@@ -31,7 +31,7 @@ def base():
     conn.close()
 
 def popular():
-    with open("prog-4\slang_pan.txt") as f:
+    with open("modulo 1\slang_pan.txt") as f:
         contenido = f.read().splitlines()
     
     conn = sqlite3.connect('dict.db')
