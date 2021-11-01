@@ -21,28 +21,29 @@ def res(a):
     return r.get(a)
 
 
-@app.route('/',  methods=['GET', 'POST'])
+@app.route('/')
 def menu():
    return render_template("menu.html")
 
 ##action 
-@app.route('/agregar',  methods=['GET', 'POST'])
+@app.route('/agregar',  methods=['GET'])
 def agregar():
-   pal = str(request.form.get("palabra", False))
-   defn = str(request.form.get("significado", False))
-   agg(pal, defn)
+   if str(request.args.get("palabra")) != "None" and str(request.args.get("significado")) != "None" :
+      pal = str(request.args.get("palabra"))
+      defn = str(request.args.get("significado"))
+      agg(pal, defn)
    return render_template("agregar.html")
 
 @app.route('/editar',  methods=['GET', 'POST'])
 def editar():
-   pal = str(request.form.get("palabra", False))
-   pale = str(request.form.get("editado", False))
+   pal = str(request.form.get("palabra"))
+   pale = str(request.form.get("editado"))
    edit(pal, pale)
    return render_template("editar.html")
 
 @app.route('/eliminar',  methods=['GET', 'POST'])
 def eliminar():
-   pal = str(request.form.get("palabra", False))
+   pal = str(request.form.get("palabra"))
    delete(pal)
    return render_template("eliminar.html")
 
@@ -56,9 +57,13 @@ def listado():
 
 @app.route('/buscar',  methods=['GET', 'POST'])
 def buscar():
-   pal = str(request.form.get("palabra", False))
+   
+   pal = str(request.form.get("palabra"))
    resultado = res(pal)
-   return render_template("buscar.html",b=pal, x=resultado)
+   if pal != "" and pal!="None":
+      return render_template("buscar.html",b=pal, x=resultado)
+   else:
+      return render_template("buscar.html")
 
 
 if __name__ == '__main__':
