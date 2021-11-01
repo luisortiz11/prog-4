@@ -50,16 +50,16 @@ def eliminar():
 def listado():
    lista = {}
    for i in r.keys():
-        sig = r.get(i)
-        lista[i] = sig
+      sig = r.get(i)
+      lista[i] = sig   
    return render_template("listado.html", diccion=lista.items())
 
 @app.route('/buscar',  methods=['GET', 'POST'])
 def buscar():
    pal = str(request.form.get("palabra", False))
    resultado = res(pal)
-
    return render_template("buscar.html",b=pal, x=resultado)
+
 
 if __name__ == '__main__':
    app.debug = True
