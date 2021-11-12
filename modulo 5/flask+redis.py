@@ -18,6 +18,9 @@ def delete(a):
 def res(a):
    return r.get(a)
 
+
+@app.route("/home")
+@app.route("/index")
 @app.route('/')
 def menu():
    return '''<html>
@@ -47,9 +50,7 @@ def agregar():
       <button type="submit" onclick={{ url_for( 'agregar') }}';">Post</button>
    </form>
    
-   <form>
-      <input type="button" value="Volver" onclick="history.back()">
-   </form>
+   <a href= />Volver</a>
    </body>
    </html>'''
 
@@ -70,9 +71,7 @@ def editar():
           <input name= "editado" type="text" placeholder="Entre termino editado">
           <button type="submit" onclick={{ url_for( 'editar') }}';">Post</button>
         </form>
-         <form>
-            <input type="button" value="Volver" onclick="history.back()">
-         </form>
+         <a href= />Volver</a>
     </body>
    </html>
    
@@ -93,9 +92,7 @@ def eliminar():
           <input name="palabra" type="text" placeholder="Entre el termino">
           <button type="submit" onclick={{ url_for( 'eliminar') }}';">Post</button>
         </form>
-         <form>
-            <input type="button" value="Volver" onclick="history.back()">
-         </form>
+         <a href= />Volver</a>
     </body>
    </html>
    '''
@@ -114,9 +111,7 @@ def listado():
     <h1>Listado de palabras</h1>
       <h2>{lista}</h2>
 
-      <form>
-         <input type="button" value="Volver" onclick="history.back()">
-      </form>
+      <a href= />Volver</a>
     </body>
 </html>'''.format(lista=lista)
 
@@ -138,9 +133,7 @@ def buscar():
         </form>
       <h2>Resultado</h2>
       <h3>{pal}:{resultado}</h3>
-      <form>
-         <input type="button" value="Volver" onclick="history.back()">
-      </form>
+      <a href= />Volver</a>
     </body>
 </html>'''.format(pal=pal, resultado=resultado)
    else:
@@ -154,9 +147,7 @@ def buscar():
           <input name="palabra" type="text" placeholder="Entre el termino">
           <button type="submit" onclick={{ url_for( 'buscar') }}';">Post</button>
         </form>
-         <form>
-            <input type="button" value="Volver" onclick="history.back()">
-         </form>
+         <a href= />Volver</a>
     </body>
 </html>''' 
 
