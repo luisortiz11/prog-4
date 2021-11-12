@@ -32,18 +32,24 @@ def menu():
    </body>
    </html>'''
  
-@app.route('/agregar',  methods=['GET'])
+@app.route('/agregar',  methods=['GET', 'POST'])
 def agregar():
-   if str(request.args.get("palabra")) != "None" and str(request.args.get("significado")) != "None" :
-      pal = str(request.args.get("palabra"))
-      defn = str(request.args.get("significado"))
-      agg(pal, defn)
+   
+   pal = str(request.form.get("palabra"))
+   defn = str(request.form.get("significado"))
+   agg(pal, defn)
    return '''<html><head><title>Agregar palabras</title></head>
    <body>
    <h1>Agrega una palabra</h1>
-   <input name="palabra" type="text" placeholder="Entre el termino">
-   <input name= "significado" type="text" placeholder="Entre el significado">
-   <button class="btn btn-default" type="submit">Post</button>
+   <form  method="post" >
+      <input name="palabra" type="text" placeholder="Entre el termino">
+      <input name= "significado" type="text" placeholder="Entre el significado">
+      <button type="submit" onclick={{ url_for( 'agregar') }}';">Post</button>
+   </form>
+   
+   <form>
+      <input type="button" value="Volver" onclick="history.back()">
+   </form>
    </body>
    </html>'''
 
@@ -59,11 +65,14 @@ def editar():
     </head>
     <body>
       <h1>Edita una palabra</h1>
-        <form action="{{ url_for('editar') }}" method="post" >
+        <form method="post" >
           <input name="palabra" type="text" placeholder="Entre el termino">
           <input name= "editado" type="text" placeholder="Entre termino editado">
-          <button class="btn btn-default" type="submit">Post</button>
+          <button type="submit" onclick={{ url_for( 'editar') }}';">Post</button>
         </form>
+         <form>
+            <input type="button" value="Volver" onclick="history.back()">
+         </form>
     </body>
    </html>
    
@@ -80,10 +89,13 @@ def eliminar():
     </head>
     <body>
       <h1>Elimina una palabra</h1>
-        <form action="{{ url_for('eliminar') }}" method="post" >
+        <form method="post" >
           <input name="palabra" type="text" placeholder="Entre el termino">
-          <button class="btn btn-default" type="submit">Post</button>
+          <button type="submit" onclick={{ url_for( 'eliminar') }}';">Post</button>
         </form>
+         <form>
+            <input type="button" value="Volver" onclick="history.back()">
+         </form>
     </body>
    </html>
    '''
@@ -100,9 +112,13 @@ def listado():
     </head>
     <body>
     <h1>Listado de palabras</h1>
+      <h2>{lista}</h2>
 
+      <form>
+         <input type="button" value="Volver" onclick="history.back()">
+      </form>
     </body>
-</html>'''
+</html>'''.format(lista=lista)
 
 @app.route('/buscar',  methods=['GET', 'POST'])
 def buscar():
@@ -118,10 +134,15 @@ def buscar():
       <h1>Buscar una palabra</h1>
         <form method="post" >
           <input name="palabra" type="text" placeholder="Entre el termino">
-          <button class="btn btn-default" type="submit" onclick={{ url_for( 'buscar') }}';">Post</button>
+          <button stype="submit" onclick={{ url_for( 'buscar') }}';">Post</button>
         </form>
+      <h2>Resultado</h2>
+      <h3>{pal}:{resultado}</h3>
+      <form>
+         <input type="button" value="Volver" onclick="history.back()">
+      </form>
     </body>
-</html>'''
+</html>'''.format(pal=pal, resultado=resultado)
    else:
       return '''<html>
     <head>
@@ -131,10 +152,13 @@ def buscar():
       <h1>Buscar una palabra</h1>
         <form method="post" >
           <input name="palabra" type="text" placeholder="Entre el termino">
-          <button class="btn btn-default" type="submit" onclick={{ url_for( 'buscar') }}';">Post</button>
+          <button type="submit" onclick={{ url_for( 'buscar') }}';">Post</button>
         </form>
+         <form>
+            <input type="button" value="Volver" onclick="history.back()">
+         </form>
     </body>
-</html>'''
+</html>''' 
 
 
 if __name__ == '__main__':
