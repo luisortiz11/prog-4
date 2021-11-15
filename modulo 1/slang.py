@@ -21,7 +21,7 @@ def menu():
     print("6. Salir") 
 
 def base():
-    conn = sqlite3.connect('dict.db')
+    conn = sqlite3.connect('dictmod1.db')
     cur = conn.cursor()
     cur.execute('''CREATE TABLE if not exists dict
                 (id         INTEGER PRIMARY KEY,

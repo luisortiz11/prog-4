@@ -4,8 +4,8 @@ import random
 # Establece conexion con servidor MongoDB
 con = pymongo.MongoClient("mongodb://localhost:27017/")
 
-db = con["crm"] # Base de datos
-col = db["clientes"] # Coleccion
+db = con["mongomod3"] # Base de datos
+col = db["terminos"] # Coleccion
 
 def menu():
     print("\nMENU PRINCIPAL")  
@@ -34,7 +34,7 @@ def lista():
         print(el)
 
 def res(a):
-    query = {"termino" : a}
+    query = col.find_one({"termino" : a})
     print(query)
 
 

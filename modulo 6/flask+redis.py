@@ -4,7 +4,7 @@ from flask import render_template
 import redis
 
 app = Flask(__name__)
-r = redis.StrictRedis(host= 'localhost', port= 6379, db= 0, charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host= 'localhost', port= 6379, db= 'mod6', charset="utf-8", decode_responses=True)
 
 def agg(a,b):
    r.set(a, b)
@@ -24,12 +24,11 @@ def res(a):
 def menu():
    return render_template("menu.html")
  
-@app.route('/agregar',  methods=['GET'])
+@app.route('/agregar',  methods=['GET', 'POST'])
 def agregar():
-   if str(request.args.get("palabra")) != "None" and str(request.args.get("significado")) != "None" :
-      pal = str(request.args.get("palabra"))
-      defn = str(request.args.get("significado"))
-      agg(pal, defn)
+   pal = str(request.args.get("palabra"))
+   defn = str(request.args.get("significado"))
+   agg(pal, defn)
    return render_template("agregar.html")
 
 @app.route('/editar',  methods=['GET', 'POST'])

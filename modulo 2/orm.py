@@ -20,7 +20,7 @@ class Definiciones(Base):
    palabra = relationship("Palabras", back_populates = "definicion")
    
    
-engine = create_engine('sqlite:///palabras.db', echo = True)
+engine = create_engine('sqlite:///palabrasmod2.db', echo = True)
 
 Session = sessionmaker(bind = engine)
 session = Session()

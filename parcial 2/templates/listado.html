@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Listado de palabras</title>
+    </head>
+    <body>
+      {% extends "menu.html" %}
+      {% block body %}
+        
+        {% for el in diccion %}
+          <li>
+            {{ el }}
+          </li>
+        {% else %}
+          <h2>No posts!</h2>
+        {% endfor %}
+      {% endblock %}
+    </body>
+</html>
