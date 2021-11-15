@@ -1,16 +1,17 @@
 <html>
     <head>
-        <title>Listado de palabras</title>
+        <title>Datos</title>
     </head>
     <body>
       {% extends "menu.html" %}
       {% block body %}
-        
-        {% for el in diccion %}
+        <ul style="list-style-type:none">
+        {% for a,b in diccion %}
           <li>
-            {{ el }}
+            {{a}}:{{b}}
           </li>
         {% else %}
+        </ul>
           <h2>No posts!</h2>
         {% endfor %}
       {% endblock %}

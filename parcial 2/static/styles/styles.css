@@ -4,7 +4,7 @@ nav {
     position: relative;
     width: 590px;
     height: 50px;
-    background-color: #2e363b;
+    background-color: #2b2828;
     border-radius: 8px;
     font-size: 0;
   }
@@ -42,7 +42,7 @@ nav {
   body {
     font-size: 12px;
     font-family: sans-serif;
-    background: #2c3e50;
+    background: #000000;
   }
   h1 {
     text-align: center;
@@ -65,7 +65,7 @@ nav {
   }
   
   span {
-      color: #2BD6B4;
+      color: #7c8d8a;
   }
 
  
