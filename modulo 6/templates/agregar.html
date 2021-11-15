@@ -6,8 +6,8 @@
       {% extends "menu.html" %}
       {% block body %}
         <form action="{{ url_for('agregar') }}" method="post" >
-          <input name="palabra" type="text" placeholder="Entre el termino">
-          <input name= "significado" type="text" placeholder="Entre el significado">
+          <input name="palabra" type="text" placeholder="Entre el termino" required>
+          <input name= "significado" type="text" placeholder="Entre el significado" required>
           <button class="btn btn-default" type="submit">Post</button>
         </form>
         

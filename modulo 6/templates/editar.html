@@ -6,8 +6,8 @@
       {% extends "menu.html" %}
       {% block body %}
         <form action="{{ url_for('editar') }}" method="post" >
-          <input name="palabra" type="text" placeholder="Entre el termino">
-          <input name= "editado" type="text" placeholder="Entre termino editado">
+          <input name="palabra" type="text" placeholder="Entre el termino" required>
+          <input name= "editado" type="text" placeholder="Entre termino editado" required>
           <button class="btn btn-default" type="submit">Post</button>
         </form>
         

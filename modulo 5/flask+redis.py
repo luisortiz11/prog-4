@@ -2,7 +2,7 @@ from flask import Flask, request
 import redis
 
 app = Flask(__name__)
-r = redis.StrictRedis(host= 'localhost', port= 6379, db= 'mod5', charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host= 'localhost', port= 6379, db= '5', charset="utf-8", decode_responses=True)
 
 def agg(a,b):
    r.set(a, b)

@@ -1,6 +1,6 @@
 import redis
 
-r = redis.StrictRedis(host= 'localhost', port= 6379, db= 'mod4' )
+r = redis.StrictRedis(host= 'localhost', port= 6379, db= '4' )
 
 def menu():
     print("\nMENU PRINCIPAL")  

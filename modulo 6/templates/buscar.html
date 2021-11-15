@@ -6,7 +6,7 @@
       {% extends "menu.html" %}
       {% block body %}
         <form method="post" >
-          <input name="palabra" type="text" placeholder="Entre el termino">
+          <input name="palabra" type="text" placeholder="Entre el termino" required>
           <button class="btn btn-default" type="submit" onclick={{ url_for( 'buscar') }}';">Post</button>
         </form>
 

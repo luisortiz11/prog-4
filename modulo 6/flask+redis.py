@@ -4,7 +4,7 @@ from flask import render_template
 import redis
 
 app = Flask(__name__)
-r = redis.StrictRedis(host= 'localhost', port= 6379, db= 'mod6', charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host= 'localhost', port= 6379, db= '6', charset="utf-8", decode_responses=True)
 
 def agg(a,b):
    r.set(a, b)
@@ -26,16 +26,19 @@ def menu():
  
 @app.route('/agregar',  methods=['GET', 'POST'])
 def agregar():
-   pal = str(request.args.get("palabra"))
-   defn = str(request.args.get("significado"))
-   agg(pal, defn)
+
+   pal = str(request.form.get("palabra"))
+   defn = str(request.form.get("significado"))
+   if pal != "None" and defn!= "None":
+      agg(pal, defn)
    return render_template("agregar.html")
 
 @app.route('/editar',  methods=['GET', 'POST'])
 def editar():
    pal = str(request.form.get("palabra"))
    pale = str(request.form.get("editado"))
-   edit(pal, pale)
+   if pal != '' and pale != '':
+      edit(pal, pale)
    return render_template("editar.html")
 
 @app.route('/eliminar',  methods=['GET', 'POST'])
@@ -48,8 +51,9 @@ def eliminar():
 def listado():
    lista = {}
    for i in r.keys():
-      sig = r.get(i)
-      lista[i] = sig   
+      if i != '' and i != 'None':
+         sig = r.get(i)
+         lista[i] = sig   
    return render_template("listado.html", diccion=lista.items())
 
 @app.route('/buscar',  methods=['GET', 'POST'])
