@@ -3,7 +3,7 @@
 # que manipule estos datos.
 
 import csv,random
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, redirect
 import pymongo
 
 # Establece conexion con servidor MongoDB
@@ -37,7 +37,7 @@ def res(a):
     query = col.find_one({"key": a})
     return query
 
-@app.route('/')
+@app.route('/' , methods=[ 'GET','POST'])
 def menu():
     col.remove({})
     sentinel = 0
@@ -45,26 +45,31 @@ def menu():
         for b,c in data.items():
             agg(b,c)
         sentinel+=1
-    return render_template("menu.html")
+    
+    if (request.form.get("endpoint")!= None):
+        endp = "http://127.0.0.1:5000/api/" + str(request.form.get("endpoint"))
+        return redirect(endp)
+    else: 
+        endp = "http://127.0.0.1:5000"
+        return render_template("menu.html", vink=endp)
 
 @app.route('/api/info/',  methods=['GET'])
 def info():
-    return jsonify(dict(zip(titulo[:3], pan[:3])) )
+    return jsonify({"Informacion general" : dict(zip(titulo[:3], pan[:3]))} )
  
 @app.route('/api/año/<int:number>/',  methods=['GET'])
 def vacunas(number):
     query = res(str(number))
-    return jsonify(query)
+    return jsonify({"Vacunaciones" : query})
 
 @app.route('/api/datos/',  methods=['GET'])
 def datos():
     dk = {}
     for i in col.find({},{"_id": 0, "key": 1, "value": 1}):
         dk[i["key"]] = i["value"]
-    return jsonify(dk)
+    return jsonify({"Vacunaciones por año": dk})
 
 if __name__ == '__main__':
-    
    app.debug = True
    app.run()
    app.run(debug = True)
