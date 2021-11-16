@@ -3,8 +3,7 @@
   <head><link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
  </head>
   <body>
-    <h1>API</h1>
-    <h2>Vacunación contra el sarampión en niños entre 12-23 meses en Panamá del Word Bank </h2>  
+    <h1>Vacunación contra el sarampión en niños entre 12-23 meses en Panamá del Word Bank </h1>  
     <p>
     <div>
       <h2>Peticiones a la API</h2>
@@ -15,10 +14,10 @@
       </ul>
     </div>
       <div>  
-        <form method="post" action="{{vink}}">
+        <form method="post" action="{{vink}}" target="_blank">
           <span>http://127.0.0.1:5000/api/</span>
           <input name="endpoint" type="text" placeholder="año/1988/" required>
-          <span class="input-group-btn"><button class="btn btn-primary" type="submit">request</button></span>
+          <span class="input-group-btn"><button class="btn btn-primary" type="submit" >request</button></span>
         </form>    
       </div>
     </p>   
